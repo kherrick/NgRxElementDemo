@@ -3,11 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build my-counter && ng serve --project=elementApp -o --port=4201",
-    "build": "ng build",
-    "build-element": "ng build my-counter && ng build --project=counterelement --prod --output-hashing=none",
-    "package-linux": "cat dist/counterelement/{runtime,polyfills,scripts,main}.js | gzip > htmlapp/counter-element.js",
-    "package": "jscat ./dist/counterelement/runtime.js ./dist/counterelement/polyfills.js ./dist/counterelement/scripts.js ./dist/counterelement/main.js > htmlapp/counter-element.js",
+    "start": "ng build my-counter && ng serve --project=elementApp -o --port=3000 --host=localhost",
+    "build": "ng build my-counter && ng build --project=elementApp --prod --output-hashing=none",
+    "bundle": "npm run build && mkdir -p dist/elementApp.bundle && jscat ./dist/elementApp/runtime.js ./dist/elementApp/polyfills.js ./dist/elementApp/scripts.js ./dist/elementApp/main.js > dist/elementApp.bundle/elementApp.bundle.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
