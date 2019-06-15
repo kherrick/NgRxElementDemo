@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng build my-counter && ng serve --project=elementApp -o --port=3000 --host=localhost",
     "build": "ng build my-counter && ng build --project=elementApp --prod --output-hashing=none",
+    "build:gh-pages": "ng build my-counter && ng build --project=elementApp --base-href /ngRxElementDemo/ --prod --output-hashing=none && touch dist/elementApp/.nojekyll",
     "bundle": "npm run build && mkdir -p dist/elementApp.bundle && jscat ./dist/elementApp/runtime.js ./dist/elementApp/polyfills.js ./dist/elementApp/scripts.js ./dist/elementApp/main.js > dist/elementApp.bundle/elementApp.bundle.js",
+    "deploy:gh-pages": "npx gh-pages --dotfiles --dist ./dist/elementApp/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
