@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { StoreModule } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AppComponent } from './app.component';
+import { CounterComponent } from './counter.component';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('CounterComponent', () => {
+  let component: CounterComponent;
+  let fixture: ComponentFixture<CounterComponent>;
   let store: MockStore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppComponent, StoreModule.forRoot({})],
+      imports: [CounterComponent],
       providers: [provideMockStore({})],
     });
 
     store = TestBed.inject(MockStore);
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

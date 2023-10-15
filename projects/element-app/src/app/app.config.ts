@@ -1,8 +1,16 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { ApplicationConfig, isDevMode } from '@angular/core';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideStore(),
+    provideStoreDevtools({
+      autoPause: true,
+      logOnly: !isDevMode(),
+      maxAge: 25,
+      trace: false,
+      traceLimit: 75,
+    }),
+  ],
 };
