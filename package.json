@@ -3,10 +3,19 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build:element-app": "ng build element-app",
+    "build:my-counter": "ng build my-counter",
+    "build": "npm run clean && npm run build:my-counter && npm run build:element-app",
+    "clean": "rimraf dist",
+    "deploy": "npm run build -- -- --base-href=\"/NgRxElementDemo/\" && gh-pages --dist dist/element-app --remote upstream --no-history --dotfiles",
+    "start": "npm run clean && concurrently \"npm run build:my-counter -- --watch --configuration development\" \"npm run wait:my-counter && ng serve\"",
+    "test:element-app": "ng test element-app",
+    "test:element-app:ci": "npm test element-app -- --watch false --browsers ChromeHeadless",
+    "test:my-counter": "ng test my-counter",
+    "test:my-counter:ci": "npm test my-counter -- --watch false --browsers ChromeHeadless",
+    "test:ci": "npm run test:my-counter:ci && npm run test:element-app:ci",
+    "test": "ng test",
+    "wait:my-counter": "while [ ! -d dist/my-counter ]; do sleep .01; done"
   },
   "private": true,
   "dependencies": {
